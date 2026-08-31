@@ -14,7 +14,6 @@ def mostrar_menu():
     print("  5. Eliminar producto")
     print("  6. Mostrar valor total del inventario")
     print("  7. Salir")
-    print("  8. Duplica")
     print("=" * 10)
 
 
