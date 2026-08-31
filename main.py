@@ -4,7 +4,7 @@ productos = []
 
 
 def mostrar_menu():
-    print("\n" + "=" * 10)
+    print("\n" + "=" * 45)
     print("           SISTEMA AGROCBA")
     print("=" * 45)
     print("  1. Registrar producto")
@@ -14,7 +14,7 @@ def mostrar_menu():
     print("  5. Eliminar producto")
     print("  6. Mostrar valor total del inventario")
     print("  7. Salir")
-    print("=" * 10)
+    print("=" * 45)
 
 
 
