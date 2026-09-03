@@ -2,10 +2,9 @@
 productos = []
 
 
-
 def mostrar_menu():
     print("\n" + "=" * 45)
-    print("           SISTEMA AGROCBA")
+    print("SISTEMA AGROCBA")
     print("=" * 45)
     print("  1. Registrar producto")
     print("  2. Consultar productos")
@@ -13,7 +12,13 @@ def mostrar_menu():
     print("  4. Actualizar producto")
     print("  5. Eliminar producto")
     print("  6. Mostrar valor total del inventario")
-    print("  7. Salir")
+    print("  7. Mostrar la cantidad total de unidades existentes")
+    print("  8. Producto de mayor precio")
+    print("  9. Producto con mayor cantidad disponible")
+    print("  10. Consultar productos por categoría")
+    print("  11. Ordenar productos alfabéticamente")
+    print("  12. Mostrar productos con bajo inventario")
+    print("  13. Salir")
     print("=" * 45)
 
 
@@ -217,7 +222,79 @@ def validar_numero_positivo(mensaje, valor_previo=None):
             print("  Ingrese un número válido.")
             entrada = None
 
+def total_cantidad_producto():
+    print("\n--- CANTIDAD TOTAL DE UNIDADES ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+    total_unidades = sum(p["cantidad"] for p in productos)
+    print(f"La cantidad total de unidades existentes es: {total_unidades}")
 
+
+def producto_mayor_precio():
+    print("\n--- PRODUCTO DE MAYOR PRECIO ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+
+    p_max = max(productos, key=lambda x: x["precio"])
+    print(f"Producto mayor precio: {p_max['nombre']} ({p_max['codigo']})")
+    print(f"Precio: {p_max['precio']:,.2f} | Stock: {p_max['cantidad']} uds.")    
+
+
+def producto_mayor_disponible():
+    print("\n--- PRODUCTO CON MAYOR CANTIDAD DISPONIBLE ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+    p_max_cant = max(productos, key=lambda x: x["cantidad"])
+    print(f"Producto con mayor stock: {p_max_cant['nombre']} ({p_max_cant['codigo']})")
+    print(f"Cantidad disponible: {p_max_cant['cantidad']} uds. | Precio: {p_max_cant['precio']:,.2f}")
+
+
+def consultar_categoria():
+    print("\n--- CONSULTAR PRODUCTOS POR CATEGORÍA ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+    categoria_buscar = input("Ingrese la categoría a consultar: ").strip().lower()
+    
+    filtrados = [p for p in productos if p["categoria"].lower() == categoria_buscar]
+    
+    if not filtrados:
+        print(f"No se encontraron productos en la categoría '{categoria_buscar}'.")
+        return
+        
+    print(f"\n{'Código':<8} {'Nombre':<25} {'Cantidad':>9} {'Precio':>12}")
+    print("-" * 56)
+    for p in filtrados:
+        print(f"{p['codigo']:<8} {p['nombre']:<25} {p['cantidad']:>9} {p['precio']:>12,.2f}")
+
+
+def orden_alfabetico():
+    print("\n--- PRODUCTOS ORDENADOS ALFABÉTICAMENTE ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+    productos_ordenados = sorted(productos, key=lambda x: x["nombre"].lower())
+    
+    print(f"\n{'Nombre':<25} {'Código':<8} {'Categoría':<15} {'Cantidad':>9}")
+    print("-" * 60)
+    for p in productos_ordenados:
+        print(f"{p['nombre']:<25} {p['codigo']:<8} {p['categoria']:<15} {p['cantidad']:>9}")
+
+
+def productos_bajo_inventario():
+    print("\n--- PRODUCTOS CON BAJO INVENTARIO ---")
+    if not productos:
+        print("No hay productos registrados.")
+        return
+    LIMITE_ALERTA = 5
+    bajo_stock = [p for p in productos if p["cantidad"] <= LIMITE_ALERTA]
+    
+    if not bajo_stock:
+        print(f"¡Excelente! No hay productos con stock menor o igual a {LIMITE_ALERTA} unidades.")
+        return
 
 def main():
     opciones = {
@@ -227,15 +304,20 @@ def main():
         "4": actualizar_producto,
         "5": eliminar_producto,
         "6": calcular_inventario,
+        "7": total_cantidad_producto,
+        "8":producto_mayor_precio,
+        "9":producto_mayor_disponible,
+        "10":consultar_categoria,
+        "11":orden_alfabetico,
+        "12":productos_bajo_inventario
     }
-
     while True:
         mostrar_menu()
         opcion = input("Seleccione una opción: ").strip()
 
         if opcion in opciones:
             opciones[opcion]()
-        elif opcion == "7":
+        elif opcion == "13":
             print("\nGracias por usar el Sistema AgroCBA. ¡Hasta pronto!\n")
             break
         else:
@@ -243,4 +325,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main() 
