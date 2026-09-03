@@ -4,7 +4,7 @@ productos = []
 
 
 def mostrar_menu():
-    print("\n" + "=" * 10)
+    print("\n" + "=" * 45)
     print("           SISTEMA AGROCBA")
     print("=" * 45)
     print("  1. Registrar producto")
@@ -176,7 +176,6 @@ def calcular_inventario():
 
 
 def buscar_por_codigo(codigo):
-    """Retorna el diccionario del producto si existe, o None."""
     for p in productos:
         if p["codigo"].upper() == codigo.upper():
             return p
