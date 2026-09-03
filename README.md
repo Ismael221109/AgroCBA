@@ -48,5 +48,5 @@ agrocba/
 
 ## Autor
 
-Nombre del aprendiz: Ismael Palencia Bolivar 
+Aprendiz: Ismael Palencia Bolivar 
 Ficha: 3409610
