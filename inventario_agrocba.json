@@ -1,0 +1,37 @@
+[
+    {
+        "codigo": "P001",
+        "nombre": "Carne",
+        "categoria": "Alimentos",
+        "cantidad": 4,
+        "precio": 3500.0
+    },
+    {
+        "codigo": "P002",
+        "nombre": "Pantalon",
+        "categoria": "Ropa",
+        "cantidad": 5,
+        "precio": 34000.0
+    },
+    {
+        "codigo": "P003",
+        "nombre": "Telado",
+        "categoria": "Periferico",
+        "cantidad": 7,
+        "precio": 27000.0
+    },
+    {
+        "codigo": "P004",
+        "nombre": "Mouse",
+        "categoria": "Periferico",
+        "cantidad": 6,
+        "precio": 23000.0
+    },
+    {
+        "codigo": "P005",
+        "nombre": "Chaqueta",
+        "categoria": "Ropa",
+        "cantidad": 2,
+        "precio": 23000.0
+    }
+]
